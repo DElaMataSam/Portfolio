@@ -35,6 +35,7 @@ CREATE TABLE `producto`(
 `precioUnitario` DECIMAL(10,2), 
 PRIMARY KEY (`idProducto`),
 FOREIGN KEY (`idCategoria`) REFERENCES `categoria`(`idCategoria`)
+ON CASCADE
 )
 
 CREATE TABLE `factura`(
@@ -43,8 +44,10 @@ CREATE TABLE `factura`(
 `idCliente`INT(11), 
 `idEmpleado` INT(11), 
 PRIMARY KEY (`idFactura`),
-FOREIGN KEY (`idCliente`) REFERENCES `cliente`(`idCliente`),
+FOREIGN KEY (`idCliente`) REFERENCES `cliente`(`idCliente`)
+ON CASCADE,
 FOREIGN KEY (`idEmpleado`) REFERENCES `empleado`(`idEmpleado`)
+  ON CASCADE
 )
 
 CREATE TABLE `detalle_factura`(
@@ -54,8 +57,10 @@ CREATE TABLE `detalle_factura`(
 `precioUnitario` DECIMAL(10,2),
 `cantidad` INT(11),  
 PRIMARY KEY (`idDetalle`),
-FOREIGN KEY (`idFactura`) REFERENCES `factura`(`idFactura`), 
+FOREIGN KEY (`idFactura`) REFERENCES `factura`(`idFactura`)
+  ON CASCADE, 
 FOREIGN KEY (`idProducto`) REFERENCES `producto`(`idProducto`)
+  ON CASCADE
 )
 
 CREATE TABLE `empleado`(
@@ -71,6 +76,7 @@ CREATE TABLE `empleado`(
 `idDepartamento` INT(11) DEFAULT NULL,
 PRIMARY KEY (`idEmpleado`),
 FOREIGN KEY (`idDepartamento`) REFERENCES `departamento`(`idDepartamento`)
+  ON CASCADE
 )
 
 
